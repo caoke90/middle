@@ -28,7 +28,7 @@ function use(func,name){
 use(function(req,res){
     console.log(1)
     console.log(req)
-})
+},"第二个参数")
 //使用中间件
 use(middle(function(req,res,next){
     console.log(1)
