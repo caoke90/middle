@@ -5,9 +5,7 @@ var middle=function(){
             var arg=Array.prototype.slice.call(arguments)
             var arr=[].concat(arg)
             arg.push(function(){
-                if(typeof func2=="function"){
-                    func2.apply(this,arr)
-                }
+                func2.apply(this,arr)
             })
             return func1.apply(this,arg);
         }
