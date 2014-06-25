@@ -1,15 +1,36 @@
-
-var middle=function(){
-    var next=function(func1,func2){
-        return function(){
-            var arg=Array.prototype.slice.call(arguments)
-            var arr=[].concat(arg)
-            arg.push(function(){
-                func2.apply(this,arr)
-            })
-            return func1.apply(this,arg);
-        }
+/**
+ * next
+ * @param {Function} func1
+ * @param {Function} func2
+ * @example
+ * //example
+ * var func = next(fun1,func2)
+ * func(param,param,next){
+ *     next()
+ * }
+ */
+var next=function(func1,func2){
+    return function(){
+        var arg=Array.prototype.slice.call(arguments)
+        var arr=[].concat(arg)
+        arg.push(function(){
+            func2.apply(this,arr)
+        })
+        return func1.apply(this,arg);
     }
+}
+/**
+ * middle
+ * @param {Function}
+ * @example
+ * //example
+ * var func = middle(function(req,res,next){
+ *  next()
+ * },function(req,res,next){
+ *
+ * })
+ */
+var middle=function(){
     var arg=Array.prototype.slice.call(arguments)
     var func=arg[arg.length-1]
     for(var i=arg.length-2;i>=0;i--){
